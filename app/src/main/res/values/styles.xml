@@ -15,4 +15,33 @@
         <item name="colorPrimaryDark">@color/purple_700</item>
         <item name="colorAccent">@color/teal_200</item>
     </style>
+
+    <style name="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
+
+    <style name="Edit_Text_Login">
+        <!--limita a quantidade de caracteres-->
+        <item name="android:maxLength">25</item>
+        <!--puxando o style drawlable/edittext-->
+        <item name="android:background">@drawable/edit_text</item>
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/cloudsoft_bold_700</item>
+    </style>
+
+    <style name="Titulo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/Letras</item>
+        <item name="fontFamily">@font/peanut_butter</item>
+    </style>
+
 </resources>

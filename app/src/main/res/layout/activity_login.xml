@@ -3,28 +3,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/off_white"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress" />
+    <TextView
+        android:id="@+id/titulo_login"
+        style="@style/Titulo"
+        android:layout_width="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginStart="65dp"
+        android:text="Vihva" />
 
-    <EditText
-        android:id="@+id/etPassword"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        tools:ignore="WearPasswordInput" />
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:elevation="3dp"
+        app:hintEnabled="false"
+        app:endIconTint="@color/Letras"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            style="@style/Edit_Text_Login"
+            android:layout_height="40dp"
+            android:layout_width="150dp"
+            android:drawableTint="@color/Letras"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:maxLength="70"
+            android:padding="10dp"
+            android:nextFocusForward="@id/layout_senha"
+            android:textColor="@color/Letras"
+            android:textColorHint="@color/hint" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="3dp"
+        android:hint="Senha"
+        app:hintEnabled="false"
+        android:layout_marginTop="10dp"
+        app:passwordToggleEnabled="false">
+
+        <!--edit text da senha -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            style="@style/Edit_Text_Login"
+            android:layout_height="40dp"
+            android:layout_width="150dp"
+            android:layout_marginStart="20dp"
+            android:hint="Senha"
+            android:padding="10dp"
+            android:textColor="@color/Letras"
+            android:textColorHint="@color/hint"
+            android:inputType="textPassword"
+             />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login" />
+        style="@style/Button"
+        android:textColor="@color/white"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="Confirmar"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="35dp"
+        />
 
 </LinearLayout>
