@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "301199615509",
+    "firebase_url": "https://vivah-59646-default-rtdb.firebaseio.com",
+    "project_id": "vivah-59646",
+    "storage_bucket": "vivah-59646.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301199615509:android:37ce5c8c7e9a145f78d01c",
+        "android_client_info": {
+          "package_name": "com.companyvihva.vihva"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQuN32KCqwXAzScDN06kSMRzDCNa8s5c0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301199615509:android:91cfd28a0eec610f78d01c",
+        "android_client_info": {
+          "package_name": "com.companyvihva.vihvawatch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQuN32KCqwXAzScDN06kSMRzDCNa8s5c0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

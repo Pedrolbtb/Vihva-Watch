@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#FF000000</color> //preto
+    <color name="white">#FFFFFFFF</color> //branco
+    <color name="vermelho">#ff0000</color> //vermelho sangue
+    <color name="off_white">#FFFAF5</color> //off white
+    <color name="azul">#ADD8E6</color> //azul
+    <color name="Letras">#6096a8</color> //azul das letras
+    <color name="sombra">#757575</color> //cor do elevate
+    <color name="hint">#8c8c8c</color> //cor da hint mais escura
+    <color name="vermelho_alerta">#ff6961</color> //cor do vermelho usado para alertas
+    <color name="telaPassada">#648691</color> //cor de uma tela que já foi usada como na breadcrumb
+    <color name="indicador_selecao">#60FFFAF5</color>//cinza
+    <color name="background_sumido">#60212121</color>
+    <color name="transparente">#00000000</color>
+    <color name="rosa_claro">#FFB6C1</color>
+    <color name="rosa_escuro">#FF8484</color>
+    <color name="letras_remedios">#60AD9C</color>
+    <color name="roxo">#AC8DF4</color>
+
+    // umas cor aleatoria ai
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+
+
+</resources>
