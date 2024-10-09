@@ -49,6 +49,8 @@ android {
     }
 }
 
+
+
 dependencies {
 
     implementation("com.google.android.gms:play-services-wearable:18.2.0")
@@ -70,4 +72,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
     implementation ("com.google.firebase:firebase-auth:23.0.0" )
     implementation ("com.google.firebase:firebase-firestore:25.1.0")
+    //Samsung Health
+    implementation ("com.samsung.android.sdk.healthdata:healthdata:2.5.0")
+    implementation ("com.samsung.android:shealth:1.0.0")
 }
