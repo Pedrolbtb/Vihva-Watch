@@ -10,9 +10,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven{url = uri(  "https://sdk.samsunghealth.com/repository" )
-        }
-
     }
 }
 

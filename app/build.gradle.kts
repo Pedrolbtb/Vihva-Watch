@@ -88,10 +88,4 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
 
-    // Samsung Health (HALF)
-    implementation("com.samsung.android.sdk.healthdata:healthdata:2.5.0")
-    implementation("com.samsung.android:shealth:1.0.0")
-
-    // Health Services Client
-    implementation("androidx.health:health-services-client:1.0.0-rc02")
 }
