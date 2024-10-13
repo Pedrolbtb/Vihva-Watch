@@ -2,49 +2,47 @@ package com.companyvihva.vihvawatch.Inicio
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.style.StyleSpan
+import android.os.Handler
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.companyvihva.vihvawatch.R
-import com.companyvihva.vihvawatch.services.FitnessService
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.companyvihva.vihvawatch.service.FitnessService
 
 class Inicio : AppCompatActivity() {
-    private lateinit var db: FirebaseFirestore
     private lateinit var textBemVindo: TextView
+    private lateinit var textPassos: TextView
+    private lateinit var textBatimentos: TextView
+    private lateinit var textDistancia: TextView
 
     companion object {
-        private const val REQUEST_CODE = 1001  // Código de requisição para permissões
+        private const val REQUEST_CODE = 1001
+        private const val PASSO_MEDIO_EM_METROS = 0.75
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio)
 
-        // Inicializa o Firestore
-        db = FirebaseFirestore.getInstance()
-
-        // Inicializa a TextView para o texto de boas-vindas
+        // Inicializa as TextViews para o texto de boas-vindas e dados fitness
         textBemVindo = findViewById(R.id.titulo_login)
+        textPassos = findViewById(R.id.text_passos)
+        textBatimentos = findViewById(R.id.text_batimentos)
+        textDistancia = findViewById(R.id.text_distancia)
+
+        // Exibe mensagem de boas-vindas
+        textBemVindo.text = "Vihva Watch"
 
         // Verifica e solicita permissões necessárias
         checkPermissionsAndStartService()
     }
 
     private fun checkPermissionsAndStartService() {
-        // Verifica se as permissões de reconhecimento de atividades e sensores corporais foram concedidas
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED ||
             ContextCompat.checkSelfPermission(this, android.Manifest.permission.BODY_SENSORS) != PackageManager.PERMISSION_GRANTED) {
-            // Se não concedidas, solicita as permissões
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(
@@ -54,82 +52,80 @@ class Inicio : AppCompatActivity() {
                 REQUEST_CODE
             )
         } else {
-            // Permissões já concedidas, inicia a coleta de dados
-            fetchUserData()
             startFitnessService()
         }
     }
 
-    private fun fetchUserData() {
-        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
-        currentUserUid?.let { uid ->
-            val userDocRef = db.collection("clientes").document(uid)
-            userDocRef.get()
-                .addOnSuccessListener { document ->
-                    if (document != null && document.exists()) {
-                        val nome = document.getString("nome") ?: "Nome não fornecido"
-                        val textoCompleto = "Bem-vindo, $nome! Você está conectado ao Vihva Watch, que usará os dados de exercícios físicos no seu aplicativo principal."
-
-                        // Cria um SpannableString para aplicar fonte personalizada
-                        val spannableString = SpannableString(textoCompleto)
-                        val startIndex = textoCompleto.indexOf("Vihva Watch")
-                        val endIndex = startIndex + "Vihva Watch".length
-                        val customTypeface = ResourcesCompat.getFont(this, R.font.peanut_butter)
-
-                        // Aplica a fonte personalizada se estiver disponível
-                        if (customTypeface != null) {
-                            spannableString.setSpan(
-                                CustomTypefaceSpan(customTypeface),
-                                startIndex,
-                                endIndex,
-                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                            )
-                        } else {
-                            Log.d("BemVindoActivity", "Fonte personalizada não foi carregada.")
-                        }
-
-                        textBemVindo.text = spannableString
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.d("BemVindoActivity", "Erro ao pegar o documento: ${exception.message}")
-                }
-        }
+    // Atualiza os dados de fitness na interface
+    private fun updatePassosEDistancia(passos: Int) {
+        val distancia = calcularDistancia(passos)
+        textPassos.text = "Passos: $passos"
+        textDistancia.text = "Distância: %.2f Km".format(distancia)  // Atualiza a distância em Km
     }
 
-    // Inicia o serviço de coleta de dados de fitness
+    private fun updateBatimentos(batimentos: Int) {
+        textBatimentos.text = "Batimentos: $batimentos BPM"
+    }
+
+    // Função para calcular a distância com base nos passos
+    private fun calcularDistancia(passos: Int): Double {
+        val distanciaMetros = passos * PASSO_MEDIO_EM_METROS
+        return distanciaMetros / 1000  // Converte para quilômetros
+    }
+
     private fun startFitnessService() {
         val serviceIntent = Intent(this, FitnessService::class.java)
         startService(serviceIntent)
+
+        simulateFitnessData()
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+    private fun simulateFitnessData() {
+        val handlerPassosDistancia = Handler(mainLooper)
+        val handlerBatimentos = Handler(mainLooper)
+        var passos = 0
+        var batimentos = 70
+        var aumentarBatimentos = true
+
+        // Runnable para atualizar passos e distância a cada 2,5 segundos
+        val runnablePassosDistancia = object : Runnable {
+            override fun run() {
+                passos += (5..15).random()  // Simula entre 5 e 15 passos por atualização
+                updatePassosEDistancia(passos)
+                handlerPassosDistancia.postDelayed(this, 2500)  // Atualiza a cada 2,5 segundos
+            }
+        }
+
+        // Runnable para atualizar os batimentos cardíacos a cada 1 minuto
+        val runnableBatimentos = object : Runnable {
+            override fun run() {
+                // Simula a variação de batimentos cardíacos
+                if (aumentarBatimentos) {
+                    batimentos += (1..3).random()  // Aumenta os batimentos
+                    if (batimentos >= 100) aumentarBatimentos = false  // Se alcançar 100, começa a diminuir
+                } else {
+                    batimentos -= (1..3).random()  // Diminui os batimentos
+                    if (batimentos <= 60) aumentarBatimentos = true  // Se alcançar 60, começa a aumentar
+                }
+
+                updateBatimentos(batimentos)
+                handlerBatimentos.postDelayed(this, 60000)  // Atualiza a cada 1 minuto (60.000 milissegundos)
+            }
+        }
+
+        // Inicia ambos os Runnables
+        handlerPassosDistancia.post(runnablePassosDistancia)
+        handlerBatimentos.post(runnableBatimentos)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permissões concedidas, iniciar coleta de dados
-                fetchUserData()
                 startFitnessService()
             } else {
-                Log.d("BemVindoActivity", "Permissão de reconhecimento de atividades ou sensores negada.")
+                Log.d("InicioActivity", "Permissão de reconhecimento de atividades ou sensores negada.")
             }
-        }
-    }
-
-    // Classe interna para customizar fonte no SpannableString
-    class CustomTypefaceSpan(private val newType: Typeface) : StyleSpan(Typeface.NORMAL) {
-        override fun updateDrawState(ds: android.text.TextPaint) {
-            super.updateDrawState(ds)
-            ds.typeface = newType
-        }
-
-        override fun updateMeasureState(paint: android.text.TextPaint) {
-            super.updateMeasureState(paint)
-            paint.typeface = newType
         }
     }
 }

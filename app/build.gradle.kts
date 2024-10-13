@@ -88,4 +88,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
 
+
+    // Health Services Client
+    implementation("androidx.health:health-services-client:1.0.0-rc02")
 }
