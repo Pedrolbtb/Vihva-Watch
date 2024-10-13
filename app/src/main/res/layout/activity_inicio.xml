@@ -7,19 +7,16 @@
     android:orientation="vertical"
     android:background="@color/off_white"
     android:padding="16dp">
-
-
-
     <TextView
         android:id="@+id/titulo_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="Vihva"
+        android:layout_marginTop="40px"
+        android:layout_marginBottom="10px"
         android:fontFamily="@font/peanut_butter"
         style="@style/Titulo"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:paddingBottom="16dp"
         android:textAlignment="center"
         android:layout_gravity="center"
         />
@@ -29,11 +26,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Passos: 0"
-        android:textSize="18sp"
+        android:textSize="15sp"
+        android:layout_marginTop="5px"
         android:drawableStart="@drawable/ic_caminhada"
         android:drawablePadding="3dp"
         android:textColor="@color/Letras"
-        android:fontFamily="@font/cloudsoft_light_300"
+        android:fontFamily="@font/cloudsoft_bold_700"
         />
 
     <TextView
@@ -41,9 +39,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Batimentos: 0 BPM"
-        android:fontFamily="@font/cloudsoft_light_300"
+        android:fontFamily="@font/cloudsoft_bold_700"
         android:textColor="@color/Letras"
-        android:textSize="18sp"
+        android:textSize="15sp"
+        android:layout_marginTop="15px"
         android:drawableStart="@drawable/ic_coracao"
         android:drawablePadding="3dp"
         />
@@ -53,9 +52,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Distancia: 0 Km"
+        android:layout_marginTop="15px"
         android:textColor="@color/Letras"
-        android:fontFamily="@font/cloudsoft_light_300"
-        android:textSize="18sp"
+        android:fontFamily="@font/cloudsoft_bold_700"
+        android:textSize="15sp"
         android:drawableStart="@drawable/ic_distancia"
         android:drawablePadding="3dp"
         />
@@ -63,9 +63,10 @@
     <Button
         android:id="@+id/btnLogin"
         style="@style/Button"
+        android:background="@drawable/buttonp"
         android:textColor="@color/white"
         android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:text="Parar"
         android:layout_marginTop="10dp"
         android:layout_marginStart="35dp"

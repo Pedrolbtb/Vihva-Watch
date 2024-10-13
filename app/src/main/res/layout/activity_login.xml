@@ -37,7 +37,8 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:maxLength="70"
-            android:padding="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="2dp"
             android:nextFocusForward="@id/layout_senha"
             android:textColor="@color/Letras"
             android:textColorHint="@color/hint" />
