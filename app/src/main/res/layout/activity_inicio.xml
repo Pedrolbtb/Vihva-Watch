@@ -61,7 +61,7 @@
         />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnStop"
         style="@style/Button"
         android:background="@drawable/buttonp"
         android:textColor="@color/white"
