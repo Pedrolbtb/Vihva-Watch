@@ -3,7 +3,7 @@
 <p align="center">
 <img src ="https://github.com/user-attachments/assets/3b58c455-a011-422f-b84f-0d01714e9d88" width="30%">
  </p>
-Vihva é um app de smartwatches produzido como extensão para caminhadas do app <a href="https://github.com/Pedrolbtb/Vihva-app">Vihva</a>.
+Vihva Watch é um app de smartwatches produzido como extensão para caminhadas do app <a href="https://github.com/Pedrolbtb/Vihva-app">Vihva</a>.
 
 ## Descrição
 
@@ -41,7 +41,7 @@ Agradecemos imensamente o interesse em contribuir com o Vihva Watch. Ficaremos h
 <p align="center">
 <img src="https://github.com/user-attachments/assets/3b58c455-a011-422f-b84f-0d01714e9d88" width="30%">
 </p>
-Vihva is a smartwatch app designed as an extension for walking activities from the <a href="https://github.com/Pedrolbtb/Vihva-app">Vihva</a> app.
+Vihva Watch is a smartwatch app designed as an extension for walking activities from the <a href="https://github.com/Pedrolbtb/Vihva-app">Vihva</a> app.
 
 ## Description
 
